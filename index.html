@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="东南风文学社——在山海之间，写下我们的时代。阅读原创作品、了解文学活动与加入方式。" />
+    <meta name="theme-color" content="#102a43" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23102a43'/%3E%3Cpath d='M13 42c13-3 20-12 25-28 2 11 7 18 15 22-10 0-18 4-26 13 2-8-2-9-14-7Z' fill='%23f6f1e7'/%3E%3Ccircle cx='49' cy='15' r='5' fill='%23d9472b'/%3E%3C/svg%3E" />
+    <title>东南风文学社｜在山海之间写作</title>
+    <link rel="stylesheet" href="./styles.css?v=20260921-2" />
+    <script src="./script.js?v=20260921-2" type="module"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到正文</a>
+    <header class="site-header" id="top">
+      <a class="brand" href="#top" aria-label="东南风文学社首页">
+        <span class="brand-mark" aria-hidden="true">东</span>
+        <span>东南风文学社</span>
+      </a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="sr-only">打开导航</span>
+        <span></span><span></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="主导航">
+        <a href="#library">书目</a>
+        <a href="#magazines">社刊</a>
+        <a href="#creations">创作</a>
+        <a href="#events">近期活动</a>
+        <button class="nav-account" id="account-button" type="button">登录 / 注册</button>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <img class="hero-art" src="./assets/dnf-cover.png" alt="东南风文学社黑白标志封面" />
+        <div class="hero-shade"></div>
+        <div class="hero-copy">
+          <p class="eyebrow">东南风 · SINCE 1991</p>
+          <h1 id="hero-title">让文字，<br />沿着东南风抵达。</h1>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#library">开始阅读 <span aria-hidden="true">↘</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="library section-pad" id="library" aria-labelledby="library-title">
+        <div class="section-heading reveal">
+          <div>
+            <p class="section-kicker">东南风书库</p>
+            <h2 id="library-title">风从纸上来</h2>
+          </div>
+          <button class="button button-dark" id="open-create" type="button">新建书目 <span aria-hidden="true">＋</span></button>
+        </div>
+
+        <div class="catalog-tools reveal">
+          <label class="search-box">
+            <span class="sr-only">搜索书名、作者或摘要</span>
+            <span aria-hidden="true">⌕</span>
+            <input id="catalog-search" type="search" placeholder="搜索书名、作者或摘要" autocomplete="off" />
+          </label>
+          <div class="filters" id="catalog-filters" role="group" aria-label="筛选书目类型">
+            <button class="filter active" type="button" data-filter="all" aria-pressed="true">全部</button>
+            <button class="filter" type="button" data-filter="小说" aria-pressed="false">小说</button>
+            <button class="filter" type="button" data-filter="诗歌" aria-pressed="false">诗歌</button>
+            <button class="filter" type="button" data-filter="散文" aria-pressed="false">散文</button>
+            <button class="filter" type="button" data-filter="自建" aria-pressed="false">我的条目</button>
+          </div>
+          <label class="sort-box">排序
+            <select id="catalog-sort">
+              <option value="newest">最新收录</option>
+              <option value="rating">评分最高</option>
+              <option value="votes">投票最多</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="catalog-meta reveal" aria-live="polite">
+          <span id="catalog-count">共 0 部作品</span>
+          <span>点击封面查看摘要、评论与评分</span>
+        </div>
+        <div class="book-grid" id="book-grid"></div>
+        <div class="empty-state" id="empty-state" hidden>
+          <strong>没有找到相符的书目</strong>
+          <span>换个关键词，或创建你的第一条记录。</span>
+        </div>
+      </section>
+
+      <section class="magazines section-pad" id="magazines" aria-labelledby="magazines-title">
+        <div class="section-heading reveal">
+          <div>
+            <p class="section-kicker">东南风社刊</p>
+            <h2 id="magazines-title">一期一会，纸上重逢</h2>
+          </div>
+          <p class="heading-note">在线查阅历期社刊，PDF 文件以私有存储和临时链接提供。</p>
+        </div>
+        <div class="magazine-grid" id="magazine-grid" aria-live="polite">
+          <div class="content-empty"><strong>暂无社刊</strong><p>新一期正在整理中。</p></div>
+        </div>
+        <div class="issue-articles" id="issue-articles">
+          <div class="issue-articles-heading">
+            <div>
+              <p class="section-kicker">历年社刊目录</p>
+              <h3>按文章阅读</h3>
+            </div>
+            <span id="issue-article-count">正在整理目录…</span>
+          </div>
+          <div class="filters article-issue-tabs" id="article-issue-tabs" role="group" aria-label="选择社刊年份"></div>
+          <div class="article-tools">
+            <label class="search-box">
+              <span aria-hidden="true">⌕</span>
+              <input id="article-search" type="search" placeholder="搜索文章或作者" autocomplete="off" />
+            </label>
+            <div class="filters" id="article-filters" role="group" aria-label="筛选年刊文章类型"></div>
+          </div>
+          <div class="article-grid" id="article-grid" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="creations section-pad" id="creations" aria-labelledby="creations-title">
+        <div class="section-heading reveal">
+          <div>
+            <p class="section-kicker">社员创作</p>
+            <h2 id="creations-title">把作品交给风</h2>
+          </div>
+          <button class="button button-dark" id="open-creation" type="button">发布创作 <span aria-hidden="true">＋</span></button>
+        </div>
+        <p class="access-note" id="creation-access-note">登录正式账号后可上传 PDF 或 DOCX；Word 会先转为 PDF 再存入云端，访客可直接浏览。</p>
+        <div class="creation-grid" id="creation-grid" aria-live="polite">
+          <div class="content-empty"><strong>暂无创作</strong><p>期待第一篇作品在这里出现。</p></div>
+        </div>
+      </section>
+
+      <section class="events section-pad" id="events" aria-labelledby="events-title">
+        <div class="section-heading reveal">
+          <div>
+            <p class="section-kicker">近期活动</p>
+            <h2 id="events-title">与文字见面</h2>
+          </div>
+          <p class="heading-note">每一场相遇，都是一篇新作的开头。</p>
+        </div>
+        <div class="event-grid" id="event-grid" aria-live="polite">
+          <div class="events-empty"><strong>暂无</strong><p>近期活动正在筹备中，欢迎关注后续更新。</p></div>
+        </div>
+      </section>
+
+      <section class="join" id="join" aria-labelledby="join-title">
+        <div class="join-number" aria-hidden="true">东<br />南<br />风</div>
+        <div class="join-copy reveal">
+          <p class="section-kicker">成为我们的一员</p>
+          <h2 id="join-title">把你正在写的，<br />带到这里来。</h2>
+          <p>无论你写了很多年，还是刚刚开始，我们都期待与你在文字里相遇。招新咨询与投稿请发送邮件。</p>
+          <a class="button button-light" href="mailto:sewseu@163.com">写信给我们 <span aria-hidden="true">↗</span></a>
+          <small>sewseu@163.com</small>
+        </div>
+      </section>
+
+      <dialog class="book-dialog" id="book-dialog" aria-labelledby="detail-title">
+        <button class="dialog-close" type="button" data-close="book-dialog" aria-label="关闭详情">×</button>
+        <div class="detail-layout">
+          <div class="detail-cover-wrap">
+            <div class="book-cover large" id="detail-cover"></div>
+            <button class="vote-button" id="vote-button" type="button" aria-pressed="false"><span aria-hidden="true">△</span> 为它投票 <strong id="detail-votes">0</strong></button>
+          </div>
+          <div class="detail-content">
+            <p class="work-meta" id="detail-meta"></p>
+            <h2 id="detail-title"></h2>
+            <p class="detail-summary" id="detail-summary"></p>
+            <section class="rating-panel" aria-labelledby="rating-title">
+              <div>
+                <p id="rating-title">书目评分</p>
+                <strong id="rating-average">—</strong><span> / 5</span>
+                <small id="rating-count">暂无评分</small>
+              </div>
+              <div class="stars" id="rating-stars" role="group" aria-label="选择你的评分"></div>
+            </section>
+            <section class="comments" aria-labelledby="comments-title">
+              <div class="comments-heading">
+                <h3 id="comments-title">读者评论</h3>
+                <span id="comments-count">0 条</span>
+              </div>
+              <div class="comment-list" id="comment-list"></div>
+              <form class="comment-form" id="comment-form">
+                <label><span class="sr-only">你的名字</span><input id="comment-name" maxlength="20" placeholder="你的名字" required /></label>
+                <label><span class="sr-only">评论内容</span><textarea id="comment-text" maxlength="240" placeholder="写下你的阅读感受……" required></textarea></label>
+                <button class="button button-dark" type="submit">发表评论 <span aria-hidden="true">→</span></button>
+              </form>
+            </section>
+          </div>
+        </div>
+      </dialog>
+
+      <dialog class="create-dialog" id="create-dialog" aria-labelledby="create-title">
+        <button class="dialog-close" type="button" data-close="create-dialog" aria-label="关闭新建书目">×</button>
+        <div class="create-layout">
+          <div class="create-preview">
+            <p class="section-kicker">封面预览</p>
+            <div class="book-cover large" id="create-cover-preview"></div>
+          </div>
+          <form class="create-form" id="create-form">
+            <p class="section-kicker">添加到我的目录</p>
+            <h2 id="create-title">新建书目</h2>
+            <div class="form-grid">
+              <label>书名<input id="create-title-input" name="title" maxlength="40" placeholder="例如：海边的卡夫卡" required /></label>
+              <label>作者<input name="author" maxlength="24" placeholder="作者姓名" required /></label>
+              <label>类型<select name="genre" required><option>小说</option><option>诗歌</option><option>散文</option><option>评论</option><option>戏剧</option></select></label>
+              <label>期刊 / 出版信息<input name="issue" maxlength="30" placeholder="例如：2026 秋季刊" /></label>
+              <label>封面色<select id="create-color" name="color"><option value="blue">远山蓝</option><option value="red">朱砂红</option><option value="green">松烟绿</option><option value="gold">秋叶金</option><option value="black">墨黑</option></select></label>
+              <label class="full">摘要<textarea name="summary" maxlength="300" placeholder="用几句话介绍这部作品……" required></textarea></label>
+            </div>
+            <p class="storage-note">新建条目将同步到云端，并在审核后进入公共目录。</p>
+            <button class="button button-primary" type="submit">保存到目录 <span aria-hidden="true">→</span></button>
+          </form>
+        </div>
+      </dialog>
+
+      <dialog class="account-dialog" id="account-dialog" aria-labelledby="account-title">
+        <button class="dialog-close" type="button" data-close="account-dialog" aria-label="关闭账号窗口">×</button>
+        <div class="account-layout">
+          <div class="account-intro">
+            <p class="section-kicker">东南风通行证</p>
+            <h2 id="account-title">登录后，<br />让文字留下名字。</h2>
+            <p>正式账号可以评论、评分、新建书目并上传创作。发布时可选择公开账号名，也可对读者匿名。</p>
+          </div>
+          <div class="account-panel">
+            <div id="account-guest-panel">
+              <div class="account-tabs" role="tablist" aria-label="账号操作">
+                <button class="account-tab active" type="button" data-account-tab="login" role="tab" aria-selected="true">登录</button>
+                <button class="account-tab" type="button" data-account-tab="register" role="tab" aria-selected="false">注册</button>
+              </div>
+              <form class="account-form" id="login-form">
+                <label>用户名<input name="username" minlength="2" maxlength="24" autocomplete="username" required /></label>
+                <label>密码<input name="password" type="password" minlength="6" autocomplete="current-password" required /></label>
+                <button class="button button-primary" type="submit">登录 <span aria-hidden="true">→</span></button>
+              </form>
+              <form class="account-form" id="register-form" hidden>
+                <label>账号名<input name="username" minlength="2" maxlength="24" autocomplete="username" required /></label>
+                <label>密码<input name="password" type="password" minlength="6" autocomplete="new-password" required /></label>
+                <button class="button button-primary" type="submit">创建账号 <span aria-hidden="true">→</span></button>
+              </form>
+            </div>
+            <div class="account-signed" id="account-signed-panel" hidden>
+              <p class="account-label">当前账号</p>
+              <strong id="account-username">—</strong>
+              <button class="button button-dark" id="logout-button" type="button">退出登录</button>
+            </div>
+          </div>
+        </div>
+      </dialog>
+
+      <dialog class="creation-dialog" id="creation-dialog" aria-labelledby="creation-form-title">
+        <button class="dialog-close" type="button" data-close="creation-dialog" aria-label="关闭发布窗口">×</button>
+        <form class="creation-form" id="creation-form">
+          <p class="section-kicker">社员投稿</p>
+          <h2 id="creation-form-title">发布一篇创作</h2>
+          <div class="form-grid">
+            <label class="full">标题<input name="title" maxlength="80" required /></label>
+            <label>类型<select name="category" required><option>小说</option><option>诗歌</option><option>散文</option><option>评论</option><option>戏剧</option><option>其他</option></select></label>
+            <label>作品文件<input name="file" type="file" accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required /></label>
+            <label class="full">简介<textarea name="summary" maxlength="500" placeholder="简要介绍作品内容……"></textarea></label>
+            <label class="check-label full"><input name="publish_anonymously" type="checkbox" /> <span>匿名发布（读者看不到账号名，但数据库仍记录作者账号以便管理）</span></label>
+          </div>
+          <p class="storage-note">支持 PDF、DOCX，最大 15 MB。DOCX 会在浏览器中转换为 PDF 后上传，云端不保存原 Word 文件。</p>
+          <button class="button button-primary" type="submit">上传并发布 <span aria-hidden="true">↑</span></button>
+        </form>
+      </dialog>
+
+      <dialog class="feedback-dialog" id="feedback-dialog" aria-labelledby="feedback-title">
+        <button class="dialog-close" type="button" data-close="feedback-dialog" aria-label="关闭点评">×</button>
+        <div class="feedback-layout">
+          <header class="feedback-header">
+            <p class="section-kicker" id="feedback-kind">作品点评</p>
+            <h2 id="feedback-title">点评与评分</h2>
+          </header>
+          <section class="feedback-rating" aria-label="评分">
+            <div class="feedback-score"><strong id="feedback-average">—</strong><span> / 5</span><small id="feedback-rating-count">暂无评分</small></div>
+            <div class="stars" id="feedback-stars" role="group" aria-label="选择你的评分"></div>
+          </section>
+          <section class="comments feedback-comments" aria-labelledby="feedback-comments-title">
+            <div class="comments-heading">
+              <h3 id="feedback-comments-title">读者点评</h3>
+              <span id="feedback-comment-count">0 条</span>
+            </div>
+            <div class="comment-list" id="feedback-comment-list"></div>
+            <form class="comment-form feedback-form" id="feedback-form">
+              <label><span class="sr-only">点评内容</span><textarea id="feedback-text" maxlength="500" placeholder="写下你的阅读感受……" required></textarea></label>
+              <button class="button button-dark" type="submit">发表点评 <span aria-hidden="true">→</span></button>
+            </form>
+            <p class="feedback-access-note" id="feedback-access-note">注册或登录后可评分和发表点评。</p>
+          </section>
+        </div>
+      </dialog>
+
+      <dialog class="reader-dialog" id="reader-dialog" aria-labelledby="reader-title">
+        <div class="reader-header">
+          <div>
+            <p class="section-kicker">站内阅读</p>
+            <h2 id="reader-title">作品阅读器</h2>
+          </div>
+          <div class="reader-actions">
+            <button class="dialog-close reader-close" type="button" data-close="reader-dialog" aria-label="关闭阅读器">×</button>
+          </div>
+        </div>
+        <div class="reader-body">
+          <nav class="reader-toolbar" id="reader-toolbar" aria-label="PDF 阅读控制" hidden>
+            <div class="reader-page-controls">
+              <button id="reader-prev" type="button" aria-label="上一页">←</button>
+              <span id="reader-page-label" aria-live="polite">第 1 / 1 页</span>
+              <button id="reader-next" type="button" aria-label="下一页">→</button>
+            </div>
+            <div class="reader-zoom-controls">
+              <button id="reader-zoom-out" type="button" aria-label="缩小">−</button>
+              <span id="reader-zoom-label">100%</span>
+              <button id="reader-zoom-in" type="button" aria-label="放大">＋</button>
+              <button id="reader-fit" type="button">适合宽度</button>
+            </div>
+          </nav>
+          <div class="reader-viewport" id="reader-viewport">
+            <p class="reader-status" id="reader-status">正在加载…</p>
+            <div class="reader-pdf-stage" id="reader-pdf-stage" hidden>
+              <canvas id="reader-canvas" aria-label="PDF 页面"></canvas>
+            </div>
+            <article class="reader-document" id="reader-document" hidden></article>
+          </div>
+        </div>
+      </dialog>
+    </main>
+
+    <div class="sync-toast" id="sync-toast" role="status" aria-live="polite" hidden></div>
+
+    <footer>
+      <a class="brand footer-brand" href="#top"><span class="brand-mark" aria-hidden="true">东</span><span>东南风文学社</span></a>
+      <p>风起东南，字有回声。</p>
+      <p class="copyright">© <span id="year">2026</span> 东南风文学社</p>
+    </footer>
+  </body>
+</html>
